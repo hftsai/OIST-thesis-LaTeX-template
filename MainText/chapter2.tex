@@ -1,60 +1,90 @@
+\chapter{How to use this template} \label{ch-2}
+
+This is a practical guide into how to use this template, by explaining the role of the different folders and \texttt{Thesis.tex}, the main file.
+
+\section{Folders}
+
+The main folder contains three folders detailed here:
+
+\begin{itemize}
+
+\item \textbf{Images.} This folder should contain all the images that you will use in your thesis. It can contain subfolders, for example one for each chapter. To include an image from the main text, use something like \texttt{\textbackslash includegraphics\{subfolder/image.jpg\} } without worrying about the \texttt{Images} path.
+
+\item \textbf{MainText.} This folder contains a series of \LaTeX\ files that form the main text: introduction, chapters, conclusion and appendices. The introduction and conclusion as they are now are not numbered, which creates a few difficulties with the headers of the thesis. Those are solved by including the two lines after \texttt{\textbackslash chapter*} and some lines in \texttt{Thesis.tex}. If you want the introduction and conclusion to be numbered, re-write those files as regular chapters.  
+
+\item \textbf{Preamble.} This folder contains a series of \LaTeX\ files with the pages that will appear before the main text. Please write (or copy and paste) your own text in those files and delete the dummy text when appropriate. The files are:
+\begin{itemize}
+\item \texttt{abbreviations.tex} --- List of abbreviations. If the list goes over one page, create another table.
+\item \texttt{abstract.tex} --- Abstract. Follow directions in the file.
+\item \texttt{acknowledgments.tex} --- Acknowledgments. Follow directions in the file.
+\item \texttt{declaration.tex} --- Declaration of Original and Sole Authorship. Only modify the last item. This page needs to be signed once printed.
+\item \texttt{dedication.tex} --- Dedication (optional). Should only be a very few lines.
+\item \texttt{glossary.tex} --- Glossary (optional). If the list goes over one page, create another table.
+\item \texttt{mydefinitions.tex} --- \textbf{Important} ---This file should contain all your definitions and the \LaTeX\ packages that you usually use. For example, if you use math symbols, you should include \texttt{\textbackslash usepackage\{amsmath\}} in that file.
+\item \texttt{nomenclature.tex} --- Nomenclature (optional). If the list goes over one page, create another table.
+\item \texttt{physics\_bibstyle.bst} --- Bibliography style file modified by Jeremie Gillet in 2011 to suit his thesis. Might be suitable for physics. If you want to use another custom bibliography style, include the file in this folder.
+\item \texttt{Thesis\_bibliography.bib} --- BibTeX file containing your bibliography.
+\end{itemize}
+
+\end{itemize}
+
+\section{\texttt{Thesis.tex}}
+
+This is the main file, the only one that needs to be compiled to build the thesis. Compile once with \LaTeX, once with BibTeX and finally twice with \LaTeX\ to get all the references right.
+
+Let's go through each section and comment them briefly.
+
+\subsection{PACKAGES AND OTHER DOCUMENT CONFIGURATIONS}
+
+This section contains the minimum number of packages and definitions to compile the thesis. No line should be removed or modified, with the exception of the last line that deals with how references appear in the text.
+
+\subsection{COMPLETE THESE VALUES}
+
+Variables are defined here with the author name, thesis title, etc. Those values will be used automatically in the title and various preamble files.
+
+The submission date should be in the format ``Month, year''. 
+
+The file \texttt{mydefinitions.tex} containing your own packages and definitions is included at this point.
+
+\subsection{TITLE PAGE}
+
+Creates the title page. Do not modify.
+
+\subsection{PREAMBLE PAGES}
+
+Structures the style (header) for the preamble pages and includes them. Do not modify, except for deleting the optional preambles you might not want to include.
+
+\subsection{LIST OF CONTENTS/FIGURES/TABLES}
+
+Creates the different lists. Do not modify.
+
+\subsection{THESIS MAIN TEXT}
+
+Structures the style (header) for the main text and builds it. 
+
+The two lines \texttt{\textbackslash newpage} and \texttt{\textbackslash lhead\{\textbackslash bfseries \textbackslash leftmark\}} are only relevant for a transition between unnumbered sections and numbered sections, they do not need to be included between each chapter. 
+
+\subsection{APPENDICES}
+
+Structures the style (header) for the appendices and builds the text. The appendices are numbered with letters but are structured like regular chapters.
+
+\subsection{BIBLIOGRAPHY}
+
+Builds the bibliography. You may modify the bibliography style file depending on your needs.
+
+\subsection{PUBLISHED ARTICLES}
+
+This last section add the PDF files of your previously published articles (or about to be published) to the thesis. You should only include PDF files provided by the publishing journal. This is strictly for the examiners' convenience in this temporary bound, as for copyright reasons these files may not be published in the final version of the thesis.
 
 
-\chapter{Figures, tables and images} \label{chap-3}
-
-\section{Figures}
-
-\begin{figure}
-\center
-\includegraphics[width=0.3\textwidth]{Images/chap3/emblem.jpg} 
-\caption[Short caption for List of Figures]{{\bfseries Short caption (if wanted).} Full caption with all the details here.}
-\label{fig-example}
-\end{figure}
-
-\begin{figure}
-\center
-\includegraphics[width=0.3\textwidth]{Images/chap3/symbol.jpg} 
-\caption*{This secret image won't be numbered and won't appear in the List of Figures because of the *}
-\end{figure}
-
-Figures should appear as close as possible to the first mention of them in the text. All figures must be referred to in the text by either a parenthetical mark-up (Figure~\ref{fig-example}) or a phrasing such as ``Sequencing data, shown in Figure~\ref{fig-example}, shows that...''.  A parenthetical mention, but not an in-text mention, may be abbreviated as (Fig.~\ref{fig-example}).  The number of the chapter should be part of the Figure number.
-
-Figures must be accompanied by a caption that describes the material clearly and succinctly. Figure captions may start with a brief title in bold, which can then be referenced in the list of figures. 
-
-Figures should not have captions that run across pages, as a general rule. If a figure and its caption will be larger than a page, consider rewriting the caption, or reorganizing the figure.  If this cannot be avoided, the figure caption should continue on the immediate next page, with a reference comment at the start of the text to the fact that it is a continuation of the caption from the previous page.  No other main body text should then appear on that page.
-
-\section{Tables}
-
-\begin{table} 
-\center
-\caption{Short heading for the List of Tables.}
-\begin{tabular}{c|c}
-Parameter & Value \\ \hline \hline
-$\Delta$ & 0, 150 \\
-${\alpha}$ & 85 \\
-${\epsilon}$ & 6 \\
-${\kappa}$ & 6.8 \\
-${\gamma}$ & 0.2
-\end{tabular}
-\label{tab-values}
-\caption*{Full caption with all the details here.}
-\end{table}
-
-\begin{table} \center
-\begin{tabular}{c|c}
-Parameter & Value \\ \hline \hline
-$\Delta$ & 0, 1500 \\
-${\alpha}$ & 850 \\
-${\epsilon}$ & 60 \\
-${\kappa}$ & 68 \\
-${\gamma}$ & 2
-\end{tabular}
-\caption*{This secret table won't be numbered and won't appear in the List of Figures because of the * }
-\end{table}
-
-All tables should be referred to in the text by number (for example) ``Table ~\ref{tab-values} describes all particles found in...''.  Tables may be printed in landscape mode rather than portrait mode, but must then be printed on a separate page (with continuing and sequential pagination). Tables may extend for more than one page, but should then have the table header row repeated on each page. Do not use font sizes smaller than 9 point. Tables should have a heading and may have a caption.  The number of the chapter should be part of the Table number.
 
 
-\section{Images}
 
-Images are vital to the presentation of scientific data.  Ensure that all textual annotations are correctly labeled, and that legends (if provided) are clear and legible.  Use small symbols on charts for data points.  Ensure that axis marks and axis labels are large enough to read clearly.  Use all the white space where possible.  Provide meaningful headings for charts, as well as a caption explaining the data. Be aware of the expected standards covering image manipulation and the standard practice for image presentation in your field, and adhere to them.  In particular, avoid excessive density, contrast, and hue manipulation of photographic images.  Where extensive manipulation of images is required for data extraction or analysis, this must be clearly explained as part of your methods, and explicitly in the caption for each figure.
+
+
+
+
+
+
+
+

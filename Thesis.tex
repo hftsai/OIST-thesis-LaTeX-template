@@ -1,0 +1,163 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% OIST Doctoral Thesis - Temporary bound version
+% LaTeX Template
+% Version 0.1 (2016/03/10)
+%
+% This version is the temporary binding version which will be submitted to the thesis examiners.
+% Many features (such as double spacing) are meant for the examiners' convenience, do not modify them.
+%
+% Original author:
+% Jeremie Gillet
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[12pt, a4paper, oneside]{book} % 12 pt font, A4 paper and one-sided paper
+\usepackage[english]{babel} % The document is in English
+\usepackage[utf8]{inputenc} % UTF8 encoding
+\usepackage[T1]{fontenc} % Font encoding
+
+\usepackage{graphicx} % For including images
+\graphicspath{{./Images/}} % Specifies the directory where pictures are stored
+
+\usepackage[square, numbers, sort&compress]{natbib} % for bibliography - Square brackets, citing references with numbers, citations sorted by appearance in the text and compressed (as in [4-7])
+\usepackage{setspace} % For using double spacing
+\usepackage[bf, font=onehalfspacing]{caption} % caption: FIG in bold, 1.5 line spacing in figure and table captions
+\usepackage{pdfpages} % If you want to include a pdf file of your published paper as an appendix
+
+\usepackage{fancyhdr} % For the headers
+\usepackage{etoolbox} % For editing style sheets, used on the next line
+\patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{empty}}{}{} % Removes the number at the first page of a chapter
+
+% Making all margins 2.5 cm, 
+% More info http://ftp.jaist.ac.jp/pub/CTAN/macros/latex/contrib/fancyhdr/fancyhdr.pdf
+\hoffset = -.54 cm
+\oddsidemargin = 0 cm
+\headheight = 15 pt
+\voffset = -.54 cm
+\textwidth = 16 cm
+\textheight = 24.7cm
+\footskip = 0 cm
+\addtolength{\textheight}{-\headheight}
+\addtolength{\textheight}{-\headsep}
+
+%----------------------------------------------------------------------------------------
+%	COMPLETE THESE VALUES
+%----------------------------------------------------------------------------------------
+
+\newcommand{\name}{Author McWrity} % Author name
+\newcommand{\thesistitle}{Descriptive and unique thesis title} % Title of the thesis
+\newcommand{\submissiondate}{January, 1900} % Submission date "Month, year"
+\newcommand{\supervisor}{S.~Upervisor} % Supervisor name
+\newcommand{\cosupervisor}{C.~O'Supervisor} % Co-Supervisor name, comment this line if there is none
+
+\input{Preamble/mydefinitions} % Include your own custom LaTeX functions and includes in mydefinitions.tex
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\begin{titlepage}
+\begin{center}
+{\bfseries % Everything bold
+{\large Okinawa Institute of Science and Technology\\Graduate University}\\[1.5cm]
+{\large Thesis submitted for the degree }\\[0.5cm]
+{\Large Doctor of Philosophy}\\[3cm]
+{\huge \thesistitle}\\[0.5cm]
+by\\[0.5cm]
+{\large \name}\\[6cm] 
+{\large Supervisor: \supervisor} \\ 
+\ifx\cosupervisor\undefined\else{\large Co-Supervisor: \cosupervisor} \\ \fi
+\vspace{1cm}
+} % end of bold
+\submissiondate
+\end{center}
+\end{titlepage}
+
+%----------------------------------------------------------------------------------------
+%	PREAMBLE PAGES (comment out unnecessary pages)
+%----------------------------------------------------------------------------------------
+
+\pagestyle{plain} % Write page number
+\frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the preamble pages
+\setcounter{page}{2} % Include the title page in page counting
+
+\input{Preamble/declaration}
+\input{Preamble/abstract}
+\input{Preamble/acknowledgments}
+\input{Preamble/abbreviations}
+\input{Preamble/glossary}
+\input{Preamble/nomenclature}
+\input{Preamble/dedication}
+
+%----------------------------------------------------------------------------------------
+%	LIST OF CONTENTS/FIGURES/TABLES
+%----------------------------------------------------------------------------------------
+
+\tableofcontents % Write out the Table of Contents
+\listoffigures % Write out the List of Figures
+\listoftables % Write out the List of Tables
+\addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
+
+%----------------------------------------------------------------------------------------
+%	THESIS MAIN TEXT - CHAPTERS
+%----------------------------------------------------------------------------------------
+\pagestyle{fancy} % Changes the headers
+\fancyhf{}% Clears header and footer
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}} % Getting the chapter name right
+\rhead{\thepage} % page number at the right of the header
+\mainmatter % Begin numeric (1,2,3...) page numbering
+\doublespacing % Double spacing for the main text
+
+\input{MainText/introduction} % Un-numbered chapters (for example introduction) - Comment if unnecessary
+
+\newpage % important to mark the transition between un-numbered chapters
+\lhead{\bfseries \leftmark} % Name of the chapter at the left of the header
+
+\input{MainText/chapter1} % Import your chapters here
+\input{MainText/chapter2} 
+\newpage
+
+% Unnumbered chapters (for example conclusion) - Comment if unnecessary
+\input{MainText/conclusion} 
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	APPENDICES
+%----------------------------------------------------------------------------------------
+
+\appendix 
+\addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
+\lhead{\bfseries \leftmark} % Name of the appendix at the left of the header
+
+\input{MainText/appendixA}
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+\addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
+\addcontentsline{toc}{chapter}{Bibliography}
+\lhead{\bfseries Bibliography} % Name of the chapter at the left of the header
+\bibliographystyle{unsrtnat} % You may use a different style adapted to your field
+%\bibliographystyle{Preamble/physics_bibstyle} % This file has been created by Jeremie in 2011, works well for physics references
+\bibliography{Preamble/Thesis_bibliography} % The references information are stored in the file named "Thesis_bibliography.bib"
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PUBLISHED ARTICLES - ONLY INCLUDE PDF FILES HERE
+%----------------------------------------------------------------------------------------
+
+\chapter*{Published articles}
+\addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
+\addcontentsline{toc}{chapter}{Previously published articles}
+
+\includepdf[pages=-, offset=0.54cm \voffset]{./Images/papers/ch01_who-we-are_en_20151028_cl.pdf} % Include the pdf here
+
+\end{document}  

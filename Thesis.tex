@@ -15,7 +15,7 @@
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
 
-\documentclass[12pt, a4paper, oneside]{book} % 12 pt font, A4 paper and one-sided paper
+\documentclass[12pt, oneside]{book} % 12 pt font, A4 paper and one-sided paper
 \usepackage[english]{babel} % The document is in English
 \usepackage[utf8]{inputenc} % UTF8 encoding
 \usepackage[T1]{fontenc} % Font encoding
@@ -31,17 +31,7 @@
 \usepackage{etoolbox} % For editing style sheets, used on the next line
 \patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{empty}}{}{} % Removes the number at the first page of a chapter
 
-% Making all margins 2.5 cm, 
-% More info http://ftp.jaist.ac.jp/pub/CTAN/macros/latex/contrib/fancyhdr/fancyhdr.pdf
-\hoffset = -.54 cm
-\oddsidemargin = 0 cm
-\headheight = 15 pt
-\voffset = -.54 cm
-\textwidth = 16 cm
-\textheight = 24.7cm
-\footskip = 0 cm
-\addtolength{\textheight}{-\headheight}
-\addtolength{\textheight}{-\headsep}
+\usepackage[a4paper, includehead, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm]{geometry}  
 
 % The following line may be modified depending on the reference style you want to adopt
 \usepackage[square, numbers, sort&compress]{natbib} % for bibliography - Square brackets, citing references with numbers, citations sorted by appearance in the text and compressed (as in [4-7])

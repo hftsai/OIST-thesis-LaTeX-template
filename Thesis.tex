@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % OIST Doctoral Thesis - Temporary bound version
 % LaTeX Template
-% Version 0.2 (2016/03/10)
+% Version 0.2 (2016/04/06)
 %
 % This version is the temporary binding version which will be submitted to the thesis examiners.
 % Many features (such as double spacing) are meant for the examiners' convenience, do not modify them.
@@ -16,6 +16,7 @@
 %----------------------------------------------------------------------------------------
 
 \documentclass[12pt, oneside]{book} % 12 pt font, A4 paper and one-sided paper
+\usepackage[a4paper, includehead, headheight=0.6cm, inner=2.5cm ,outer=2.5cm, top=2.5 cm, bottom=2.5cm]{geometry}  % Changing size of document
 \usepackage[english]{babel} % The document is in English
 \usepackage[utf8]{inputenc} % UTF8 encoding
 \usepackage[T1]{fontenc} % Font encoding
@@ -28,10 +29,14 @@
 \usepackage{pdfpages} % If you want to include a pdf file of your published paper as an appendix
 
 \usepackage{fancyhdr} % For the headers
-\usepackage{etoolbox} % For editing style sheets, used on the next line
-\patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{empty}}{}{} % Removes the number at the first page of a chapter
 
-\usepackage[a4paper, includehead, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm]{geometry}  
+\newcommand{\numberedchapter}{ % Preparation for numbered chapters
+	\cleardoublepage % To make sure the previous headers are passed
+	\lhead{\bfseries \leftmark}}% Header
+\newcommand{\unnumberedchapter}[1]{ % Preparation for unnumbered chapters
+	\cleardoublepage % To make sure the previous headers are passed
+	\addcontentsline{toc}{chapter}{#1} % Also adds the chapter name to the Contents
+	\lhead{\bfseries #1}}% Header
 
 % The following line may be modified depending on the reference style you want to adopt
 \usepackage[square, numbers, sort&compress]{natbib} % for bibliography - Square brackets, citing references with numbers, citations sorted by appearance in the text and compressed (as in [4-7])
@@ -94,66 +99,63 @@ by\\[0.5cm]
 \tableofcontents % Write out the Table of Contents
 \listoffigures % Write out the List of Figures
 \listoftables % Write out the List of Tables
-\addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
 
 %----------------------------------------------------------------------------------------
 %	THESIS MAIN TEXT
 %----------------------------------------------------------------------------------------
-\pagestyle{fancy} % Changes the headers
-\fancyhf{}% Clears header and footer
-\renewcommand{\chaptermark}[1]{\markboth{#1}{}} % Getting the chapter name right
-\rhead{\thepage} % page number at the right of the header
-\lhead{\bfseries \leftmark} % Name of the chapter at the left of the header
+
+\addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
 \mainmatter % Begin numeric (1,2,3...) page numbering
+\pagestyle{fancy} % Change the header style
+\fancyhf{}% Clear header and footer
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}} % Getting the chapter name right
+\rhead{\thepage} % Page number at the right of the header
 \doublespacing % Double spacing for the main text
 
-\input{MainText/introduction} % % Unnumbered chapter - Delete if unnecessary along with the following two lines
-\newpage % important to mark the transition between un-numbered chapters
-\lhead{\bfseries \leftmark} % Name of the chapter at the left of the header
+\unnumberedchapter{Introduction} % Title of the unnumbered chapter
+\input{MainText/introduction} % Introduction (unnumbered)
 
-\input{MainText/chapter1} % Import your chapters here
+\numberedchapter % Numbered chapters following
+\input{MainText/chapter1} % Input your chapters here
 \input{MainText/chapter2} 
 \input{MainText/chapter3} 
-\newpage
+%\input{MainText/chapter4} 
+%\input{MainText/chapter5} 
 
-\input{MainText/conclusion} % Unnumbered chapter - Delete if unnecessary along with the following line
-\newpage
+\unnumberedchapter{Conclusion} % Title of the unnumbered chapter
+\input{MainText/conclusion} % Conclusion (unnumbered)
 
 %----------------------------------------------------------------------------------------
 %	APPENDICES
 %----------------------------------------------------------------------------------------
-
-\appendix 
 \addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
-\lhead{\bfseries \leftmark} % Name of the appendix at the left of the header
+\appendix % The chapters inputed after this are treated as appendices
 
+\numberedchapter % Numbered chapters following
 \input{MainText/appendixA}
 %\input{MainText/appendixB}
 %\input{MainText/appendixC}
-\newpage
 
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY
 %----------------------------------------------------------------------------------------
 
 \addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
-\addcontentsline{toc}{chapter}{Bibliography}
-\lhead{\bfseries Bibliography} % Name of the chapter at the left of the header
-
+\unnumberedchapter{Bibliography} % Title of the unnumbered chapter
 %\bibliographystyle{unsrtnat} % You may use a different style adapted to your field
 \bibliographystyle{Preamble/physics_bibstyle} % This file has been created by Jeremie in 2011, works well for physics references
-
 \bibliography{Preamble/Thesis_bibliography} % The references information are stored in the file named "Thesis_bibliography.bib"
-\newpage
 
 %----------------------------------------------------------------------------------------
 %	PUBLISHED ARTICLES - ONLY INCLUDE PDF FILES HERE
 %----------------------------------------------------------------------------------------
 
-\chapter*{Published articles}
 \addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
-\addcontentsline{toc}{chapter}{Previously published articles}
+\unnumberedchapter{Published articles} % Title of the unnumbered chapter
+\chapter*{Published articles} % Starts a chapter which will remain empty
 
-\includepdf[pages=-, offset=0.54cm \voffset]{./Images/papers/ch01_who-we-are_en_20151028_cl.pdf} % Include the pdf here
+\includepdf[pages=-, offset=0.54cm \voffset]{./Images/papers/ch01_who-we-are_en_20151028_cl.pdf} % Includes pdf
+%\includepdf[pages=-, offset=0.54cm \voffset]{./Images/papers/paper2.pdf} % Includes pdf
+%\includepdf[pages=-, offset=0.54cm \voffset]{./Images/papers/paper3.pdf} % Includes pdf
 
 \end{document}  

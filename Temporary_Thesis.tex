@@ -77,12 +77,16 @@ by\\[0.5cm]
 \end{titlepage}
 
 %----------------------------------------------------------------------------------------
-%	PREAMBLE PAGES (comment out unnecessary pages)
+%	PREAMBLE PAGES (delete unnecessary pages)
 %----------------------------------------------------------------------------------------
 
-\pagestyle{plain} % Write page number
+\pagestyle{fancy} % Change the header style
+\fancyhf{}% Clear header and footer
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}} % Getting the chapter name right
+\rhead{\thepage} % Page number at the right of the header
 \frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the preamble pages
 \setcounter{page}{2} % Include the title page in page counting
+\doublespacing % Double spacing
 
 \input{Preamble/declaration}
 \input{Preamble/abstract}
@@ -106,11 +110,9 @@ by\\[0.5cm]
 
 \addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
 \mainmatter % Begin numeric (1,2,3...) page numbering
-\pagestyle{fancy} % Change the header style
-\fancyhf{}% Clear header and footer
-\renewcommand{\chaptermark}[1]{\markboth{#1}{}} % Getting the chapter name right
-\rhead{\thepage} % Page number at the right of the header
-\doublespacing % Double spacing for the main text
+
+\unnumberedchapter{Introduction} % Title of the unnumbered chapter
+\input{MainText/introduction} % Introduction (unnumbered)
 
 \unnumberedchapter{Introduction} % Title of the unnumbered chapter
 \input{MainText/introduction} % Introduction (unnumbered)

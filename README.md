@@ -1,2 +1,2 @@
 # OIST-thesis-LaTeX-template
-Template for the temporary bound OIST thesis, submitted to the examiners only
+Template for the OIST thesis, both the temporary bound, sent to examiners only, and the final version
